@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+aiofiles
+python-dotenv
+openai
+pymilvus
+pydantic
+httpx
+pypandoc
+langchain

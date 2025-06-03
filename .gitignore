@@ -1,0 +1,30 @@
+# General
+.DS_Store
+*.log
+*.tmp
+*.swp
+
+# Python / Backend
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/data/upload/*
+# 如果 backend/data/documents.jsonl 文件可能很大或包含特定运行的产出，也可以考虑忽略
+# backend/data/documents.jsonl
+# 如果 .env 文件在 backend 目录下，确保它被忽略
+backend/.env
+
+# Node.js / Frontend
+frontend/node_modules/
+frontend/.env.local
+
+# IDE / Editor specific
+backend/.venv
+
+# Data
+backend/data/documents.jsonl
+backend/data/upload/*
+backend/data/chunked/*
+backend/data/ingested/*
+backend/data/prompts/*
+backend/data/separated/*
