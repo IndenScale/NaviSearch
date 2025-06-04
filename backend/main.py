@@ -52,8 +52,6 @@ class Config:
     CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "200"))
     CHUNK_SEPARATORS = json.loads(os.getenv("CHUNK_SEPARATORS", '["\\n\\n", "\\n", "。", ".", " "]'))
 
-    ADMIN_WEBUI_URL = os.getenv("ADMIN_WEBUI_URL", "http://localhost:3001")
-    USER_WEBUI_URL = os.getenv("USER_WEBUI_URL", "http://localhost:3000")
     FAST_API_URL = os.getenv("FAST_API_URL", "http://localhost:8000")
 
     # Directory structure
@@ -90,7 +88,7 @@ app = FastAPI(title="NaviSearch API", version="2.0.0")
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify actual origins
+    allow_origins=["http://localhost:3010", "http://127.0.0.1:3010"],  # In production, specify actual origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -481,4 +479,7 @@ async def get_stats(user_type: str = Depends(verify_token)):
 
 if __name__ == "__main__":
     init_directories()
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    host = os.getenv("FAST_API_HOST", "0.0.0.0")  # 默认为0.0.0.0以允许外部访问
+    port = int(os.getenv("FAST_API_PORT", "8000"))  # 默认端口8000
+    
+    uvicorn.run(app, host=host, port=port)
